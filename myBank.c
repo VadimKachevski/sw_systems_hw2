@@ -1,9 +1,11 @@
 #include "myBank.h"
 #include <stdio.h>
 
-#define arrSize 50
+#define arrSize 50           // array size for the bank numbers
+#define statusAndFunds 2     // 2 spots for status of bank account and its funds
+#define offsetBankNumber 901 //account numbers start with 901 offsetting for the array indexes
 
-double arrAccount[arrSize][2];
+double arrAccount[arrSize][statusAndFunds];
 double openAccounts = 0;
 
 int openAccount(double amount)
@@ -19,7 +21,7 @@ int openAccount(double amount)
         {
             arrAccount[i][0] = 1;
             arrAccount[i][1] = amount;
-            printf("The account number is %d and it has %.2lf funds \n", i + 901, amount);
+            printf("The account number is %d and it has %.2lf funds \n", i + offsetBankNumber, amount);
             openAccounts++;
             return 1;
         }
@@ -28,10 +30,10 @@ int openAccount(double amount)
 }
 double getBalance(int accountNumber)
 {
-    if (arrAccount[accountNumber - 901][0] == 1)
+    if (arrAccount[accountNumber - offsetBankNumber][0] == 1)
     {
-        printf("The account number is %d and it now has %.2lf funds \n", accountNumber, arrAccount[accountNumber - 901][1]);
-        return 1;
+        printf("The account number is %d and it now has %.2lf funds \n", accountNumber, arrAccount[accountNumber - offsetBankNumber][1]);
+        return arrAccount[accountNumber - offsetBankNumber][1];
     }
     else
     {
@@ -41,10 +43,10 @@ double getBalance(int accountNumber)
 }
 int setBalance(int accountNumber, double amount)
 {
-    if (arrAccount[accountNumber - 901][0] == 1)
+    if (arrAccount[accountNumber - offsetBankNumber][0] == 1)
     {
-        arrAccount[accountNumber - 901][1] += amount;
-        printf("The account number is %d and it now has %.2lf funds \n", accountNumber, arrAccount[accountNumber - 901][1]);
+        arrAccount[accountNumber - offsetBankNumber][1] += amount;
+        printf("The account number is %d and it now has %.2lf funds \n", accountNumber, arrAccount[accountNumber - offsetBankNumber][1]);
         return 1;
     }
     else
@@ -55,17 +57,17 @@ int setBalance(int accountNumber, double amount)
 }
 int withdrawBalance(int accountNumber, double amount)
 {
-    if (arrAccount[accountNumber - 901][0] == 1)
+    if (arrAccount[accountNumber - offsetBankNumber][0] == 1)
     {
-        if (arrAccount[accountNumber - 901][1] >= amount)
+        if (arrAccount[accountNumber - offsetBankNumber][1] >= amount)
         {
-            arrAccount[accountNumber - 901][1] -= amount;
-            printf("The account number is %d and it now has %.2lf funds \n", accountNumber, arrAccount[accountNumber - 901][1]);
+            arrAccount[accountNumber - offsetBankNumber][1] -= amount;
+            printf("The account number is %d and it now has %.2lf funds \n", accountNumber, arrAccount[accountNumber - offsetBankNumber][1]);
             return 1;
         }
         else
         {
-            printf("The account number is %d doesn't have enough funds, it only have %.2lf \n", accountNumber, arrAccount[accountNumber - 901][1]);
+            printf("The account number is %d doesn't have enough funds, it only have %.2lf \n", accountNumber, arrAccount[accountNumber - offsetBankNumber][1]);
             return 0;
         }
     }
@@ -77,10 +79,10 @@ int withdrawBalance(int accountNumber, double amount)
 }
 int closeAccount(int accountNumber)
 {
-    if (arrAccount[accountNumber - 901][0] == 1)
+    if (arrAccount[accountNumber - offsetBankNumber][0] == 1)
     {
-        arrAccount[accountNumber - 901][0] = 0;
-        arrAccount[accountNumber - 901][1] = 0;
+        arrAccount[accountNumber - offsetBankNumber][0] = 0;
+        arrAccount[accountNumber - offsetBankNumber][1] = 0;
         printf("The account number is %d is closed \n", accountNumber);
         openAccounts--;
         return 1;
@@ -91,8 +93,7 @@ int closeAccount(int accountNumber)
         return 0;
     }
 }
-//int add‫‪InterestRate‬‬(double ‫‪inter)
-int addInterestRate(double inter)
+void addInterestRate(double inter)
 {
     for (int i = 0; i < arrSize; i++)
     {
@@ -102,7 +103,7 @@ int addInterestRate(double inter)
             arrAccount[i][1] += interest;
         }
     }
-    return 1;
+    printf("Intrest rate is added to all open accounts \n");
 }
 void printAccount()
 {
@@ -110,7 +111,7 @@ void printAccount()
     {
         if (arrAccount[i][0] == 1)
         {
-            printf("The account number is %d and it now has %.2lf funds \n", i + 901, arrAccount[i][1]);
+            printf("The account number is %d and it now has %.2lf funds \n", i + offsetBankNumber, arrAccount[i][1]);
         }
     }
 }
@@ -123,8 +124,7 @@ void closeAndExit()
             arrAccount[i][0] = 0;
             arrAccount[i][1] = 0;
             openAccounts--;
-            
         }
     }
-     printf("all accounts are closed prepering for exit \n");
+    printf("all accounts are closed prepering for exit \n");
 }
