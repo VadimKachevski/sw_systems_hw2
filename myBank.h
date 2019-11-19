@@ -2,7 +2,12 @@
 #define _MY_BANK_H
 
 //the functions could be void but I think it is better to receive status of the operation
+#define arrSize 50           // array size for the bank numbers
+#define statusAndFunds 2     // 2 spots for status of bank account and its funds
+#define offsetBankNumber 901 //account numbers start with 901 offsetting for the array indexes
 
+extern double arrAccount[arrSize][statusAndFunds];
+extern double openAccounts;
 /**
  * Opens the first available bank account with the amount of funds received
  * prints a massage if successful and returns 1

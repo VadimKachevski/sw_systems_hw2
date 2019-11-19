@@ -1,11 +1,7 @@
 #include "myBank.h"
 #include <stdio.h>
 
-#define arrSize 50           // array size for the bank numbers
-#define statusAndFunds 2     // 2 spots for status of bank account and its funds
-#define offsetBankNumber 901 //account numbers start with 901 offsetting for the array indexes
-
-double arrAccount[arrSize][statusAndFunds];
+double arrAccount[arrSize][statusAndFunds]={0};
 double openAccounts = 0;
 
 int openAccount(double amount)
@@ -103,10 +99,14 @@ void addInterestRate(double inter)
             arrAccount[i][1] += interest;
         }
     }
-    printf("Intrest rate is added to all open accounts \n");
+    printf("Intrest rate is added to all open accounts. \n");
 }
 void printAccount()
 {
+    if(openAccounts == 0)
+    {
+        printf("\nNo accounts open, nothing to display.\n");
+    }
     for (int i = 0; i < arrSize; i++)
     {
         if (arrAccount[i][0] == 1)
