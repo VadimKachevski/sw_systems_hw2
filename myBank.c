@@ -95,7 +95,7 @@ void addInterestRate(double inter)
     {
         if (arrAccount[i][0] == 1)
         {
-            double interest = arrAccount[i][1] * inter;
+            double interest = arrAccount[i][1] * inter/100;
             arrAccount[i][1] += interest;
         }
     }

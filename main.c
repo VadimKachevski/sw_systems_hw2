@@ -6,9 +6,9 @@ int getAccountNumber()
     int accountNumber;
     do
     {
-        while (getchar() != '\n');
         printf("\nPlease enter account number (Must be between 901-950): ");
-        scanf("\n%d", &accountNumber);
+        while (getchar() != '\n');
+        scanf("%d",&accountNumber);
     } while (accountNumber < 901 || accountNumber > 950);
     return accountNumber;
 }
@@ -16,10 +16,11 @@ double getFunds()
 {
     double funds;
     printf("\nPlease enter amount of funds (Must not be negative): ");
-    while (scanf("\n%lf", &funds) != 1 || funds < 0)
+    while (scanf("%lf",&funds) != 1 || funds < 0)
     {
         printf("\nPlease enter amount of funds (Must not be negative): ");
-        while (getchar() != '\n');
+         while (getchar() != '\n');
+        
     }
     return funds;
 }
@@ -27,7 +28,7 @@ double getInterset()
 {
     double intrest;
     printf("\nPlease enter intrest number (Must not be negative): ");
-    while (scanf("\n%lf", &intrest) != 1 || intrest < 0)
+    while (scanf("\n%lf",&intrest) != 1 || intrest < 0)
     {
         printf("\nPlease enter intrest number (Must not be negative): ");
         while (getchar() != '\n');
@@ -56,7 +57,7 @@ int main()
             openAccount(funds);
             break;
         case 'B':
-            printf("\nGetting balance information:\n ");
+            printf("\nGetting balance information:\n");
             accountNumber = getAccountNumber();
             getBalance(accountNumber);
             break;
