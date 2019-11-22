@@ -16,8 +16,9 @@ int openAccount(double amount)
         if (arrAccount[i][0] == 0)
         {
             arrAccount[i][0] = 1;
-            arrAccount[i][1] = amount;
-            printf("The account number is %d and it has %.2lf funds \n", i + offsetBankNumber, amount);
+            int temp = amount*100;
+            arrAccount[i][1] = (double)temp/100;
+            printf("The account number is %d and it has %.2lf funds \n", i + offsetBankNumber, arrAccount[i][1]);
             openAccounts++;
             return 1;
         }

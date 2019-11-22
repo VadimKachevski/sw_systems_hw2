@@ -7,8 +7,8 @@ int getAccountNumber()
     do
     {
         printf("\nPlease enter account number (Must be between 901-950): ");
-        while (getchar() != '\n');
         scanf("%d",&accountNumber);
+         while (getchar() != '\n');
     } while (accountNumber < 901 || accountNumber > 950);
     return accountNumber;
 }
