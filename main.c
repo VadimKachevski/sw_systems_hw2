@@ -48,7 +48,15 @@ int main()
         printf(" 'D':Deposit funds into account \n 'W':Withdraw funds from account \n 'C':Close account \n");
         printf(" 'I':Add interset to open accounts \n 'P':prints all the open accounts \n 'E':Close accounts and exit program\n");
         scanf("\n%c", &ans);
-        while (getchar() != '\n');
+        int counter =0;
+        while (getchar() != '\n')
+        {
+            counter++;
+        }
+        if(counter>0)
+        {
+            ans = 'v';
+        }
         switch (ans)
         {
         case 'O':
