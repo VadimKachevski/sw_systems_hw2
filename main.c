@@ -4,36 +4,35 @@
 int getAccountNumber()
 {
     int accountNumber;
-    do
+    printf("\nPlease enter account number (Must be between 901-950): ");
+    if (scanf("%d", &accountNumber) == 1 && (accountNumber >= 901 && accountNumber <= 950))
     {
-        printf("\nPlease enter account number (Must be between 901-950): ");
-        scanf("%d",&accountNumber);
-         while (getchar() != '\n');
-    } while (accountNumber < 901 || accountNumber > 950);
-    return accountNumber;
+        return accountNumber;
+    }
+    printf("\nYou entered wrong nubmer\n");
+    return -1;
 }
 double getFunds()
 {
     double funds;
     printf("\nPlease enter amount of funds (Must not be negative): ");
-    while (scanf("%lf",&funds) != 1 || funds < 0)
+    if (scanf("%lf", &funds) == 1 && funds >= 0)
     {
-        printf("\nPlease enter amount of funds (Must not be negative): ");
-         while (getchar() != '\n');
-        
+        return funds;
     }
-    return funds;
+    printf("\nYou entered wrong nubmer\n");
+    return -1;
 }
 double getInterset()
 {
     double intrest;
     printf("\nPlease enter intrest number (Must not be negative): ");
-    while (scanf("\n%lf",&intrest) != 1 || intrest < 0)
+    if (scanf("\n%lf", &intrest) == 1 && intrest > 0)
     {
-        printf("\nPlease enter intrest number (Must not be negative): ");
-        while (getchar() != '\n');
+        return intrest;
     }
-    return intrest;
+    printf("\nYou entered wrong nubmer\n");
+    return -1;
 }
 
 int main()
@@ -48,47 +47,69 @@ int main()
         printf(" 'D':Deposit funds into account \n 'W':Withdraw funds from account \n 'C':Close account \n");
         printf(" 'I':Add interset to open accounts \n 'P':prints all the open accounts \n 'E':Close accounts and exit program\n");
         scanf("\n%c", &ans);
-        int counter =0;
-        while (getchar() != '\n')
-        {
-            counter++;
-        }
-        if(counter>0)
-        {
-            ans = 'v';
-        }
+
         switch (ans)
         {
         case 'O':
             printf("\nCreating new account: \n");
             funds = getFunds();
-            openAccount(funds);
+            if (funds != -1)
+            {
+                openAccount(funds);
+            }
             break;
         case 'B':
             printf("\nGetting balance information:\n");
             accountNumber = getAccountNumber();
-            getBalance(accountNumber);
+            if (accountNumber != -1)
+            {
+                getBalance(accountNumber);
+            }
             break;
         case 'D':
             printf("\n Depositing funds:\n ");
             accountNumber = getAccountNumber();
+            if(accountNumber == -1)
+            {
+                break;
+            }
             funds = getFunds();
+            if(funds == -1)
+            {
+                break;
+            }
             setBalance(accountNumber, funds);
             break;
         case 'W':
             printf("\nWithdrawing funds: \n");
             accountNumber = getAccountNumber();
+            if(accountNumber == -1)
+            {
+                break;
+            }
             funds = getFunds();
+            if(funds == -1)
+            {
+                break;
+            }
             withdrawBalance(accountNumber, funds);
             break;
         case 'C':
             printf("\nClosing account: \n");
             accountNumber = getAccountNumber();
+            if(accountNumber == -1)
+            {
+                break;
+            }
             closeAccount(accountNumber);
             break;
         case 'I':
             printf("\n Add interst to accounts : \n");
             intrest = getInterset();
+            if(intrest == -1)
+            {
+                break;
+            }
             addInterestRate(intrest);
             break;
         case 'P':
