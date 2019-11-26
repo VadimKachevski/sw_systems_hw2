@@ -1,5 +1,5 @@
-#ifndef _MY_BANK_H
-#define _MY_BANK_H
+#ifndef _MY_BANK_H_
+#define _MY_BANK_H_
 
 //the functions could be void but I think it is better to receive status of the operation
 #define arrSize 50           // array size for the bank numbers

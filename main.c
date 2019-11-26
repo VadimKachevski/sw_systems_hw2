@@ -5,7 +5,7 @@ int getAccountNumber()
 {
     int accountNumber;
     printf("\nPlease enter account number (Must be between 901-950): ");
-    if (scanf("%d", &accountNumber) == 1 && (accountNumber >= 901 && accountNumber <= 950))
+    if ((scanf("%d", &accountNumber) == 1) && (accountNumber >= 901 && accountNumber <= 950))
     {
         return accountNumber;
     }
@@ -16,7 +16,7 @@ double getFunds()
 {
     double funds;
     printf("\nPlease enter amount of funds (Must not be negative): ");
-    if (scanf("%lf", &funds) == 1 && funds >= 0)
+    if ((scanf("%lf", &funds) == 1) && (funds > 0))
     {
         return funds;
     }
@@ -27,7 +27,7 @@ double getInterset()
 {
     double intrest;
     printf("\nPlease enter intrest number (Must not be negative): ");
-    if (scanf("\n%lf", &intrest) == 1 && intrest > 0)
+    if ((scanf("\n%lf", &intrest) == 1) && (intrest > 0))
     {
         return intrest;
     }

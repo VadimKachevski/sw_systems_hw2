@@ -42,7 +42,8 @@ int setBalance(int accountNumber, double amount)
 {
     if (arrAccount[accountNumber - offsetBankNumber][0] == 1)
     {
-        arrAccount[accountNumber - offsetBankNumber][1] += amount;
+        int temp = amount*100;
+        arrAccount[accountNumber - offsetBankNumber][1] += (double)temp/100;
         printf("The account number is %d and it now has %.2lf funds \n", accountNumber, arrAccount[accountNumber - offsetBankNumber][1]);
         return 1;
     }
@@ -58,7 +59,8 @@ int withdrawBalance(int accountNumber, double amount)
     {
         if (arrAccount[accountNumber - offsetBankNumber][1] >= amount)
         {
-            arrAccount[accountNumber - offsetBankNumber][1] -= amount;
+            int temp = amount*100;
+            arrAccount[accountNumber - offsetBankNumber][1] -= (double)temp/100;
             printf("The account number is %d and it now has %.2lf funds \n", accountNumber, arrAccount[accountNumber - offsetBankNumber][1]);
             return 1;
         }
@@ -98,6 +100,8 @@ void addInterestRate(double inter)
         {
             double interest = arrAccount[i][1] * inter/100;
             arrAccount[i][1] += interest;
+            int temp = arrAccount[i][1]*100;
+            arrAccount[i][1] = (double)temp/100;
         }
     }
     printf("Intrest rate is added to all open accounts. \n");
